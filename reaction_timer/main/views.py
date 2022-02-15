@@ -29,7 +29,8 @@ def first_experiment(request, username) :
   if request.method=="POST" :
     reaction_time = int(json.loads(request.body)['reaction_time'])
     participant = Participant.objects.get(username=username)
-    FirstExperiment.objects.get_or_create(paticipant=participant, reaction_time=reaction_time)
+    participant.first_experiment = reaction_time
+    participant.save()
     return render(request, 'first_experiment.html')
   
 def second_experiment(request, username) : 
@@ -40,7 +41,8 @@ def second_experiment(request, username) :
   if request.method=="POST" :
     reaction_time = int(json.loads(request.body)['reaction_time'])
     participant = Participant.objects.get(username=username)
-    SecondExperiment.objects.get_or_create(paticipant=participant, reaction_time=reaction_time)
+    participant.second_experiment = reaction_time
+    participant.save()
     return render(request, 'second_experiment.html')
 
 def third_experiment(request, username) : 
@@ -51,7 +53,8 @@ def third_experiment(request, username) :
   if request.method=="POST" :
     reaction_time = int(json.loads(request.body)['reaction_time'])
     participant = Participant.objects.get(username=username)
-    ThirdExperiment.objects.get_or_create(paticipant=participant, reaction_time=reaction_time)
+    participant.third_experiment = reaction_time
+    participant.save()
     return render(request, 'third_experiment.html')
 
 def fourth_experiment(request, username) : 
@@ -62,14 +65,36 @@ def fourth_experiment(request, username) :
   if request.method=="POST" :
     reaction_time = int(json.loads(request.body)['reaction_time'])
     participant = Participant.objects.get(username=username)
-    FourthExperiment.objects.get_or_create(paticipant=participant, reaction_time=reaction_time)
+    participant.fourth_experiment = reaction_time
+    participant.save()
+    # FourthExperiment.objects.get_or_create(paticipant=participant, reaction_time=reaction_time)
     return render(request, 'fourth_experiment.html')
 
 def results(request) : 
 
-  first_experiment_reaction_times = FirstExperiment.objects.all()
+  participants = Participant.objects.all()
 
+  results = { 'username' : [],
+              'first_experiment' : [],
+              'second_experiment' : [],
+              'third_experiment' : [], 
+              'fourth_experiment' : []}
 
-  return render(request, 'results.html', context={
-    'first_experiment':first_experiment_reaction_times
-  })
+  for participant in participants : 
+
+    results['username'].append(participant.username)
+    results['first_experiment'].append(participant.first_experiment)
+    results['second_experiment'].append(participant.second_experiment)
+    results['third_experiment'].append(participant.third_experiment)
+    results['fourth_experiment'].append(participant.fourth_experiment)
+
+  print(results['username'])
+  print(type(results['username'][0]))
+  print(type(results['first_experiment'][0]))
+  print(type(results['second_experiment'][0]))
+  print(type(results['third_experiment'][0]))
+  print(type(results['fourth_experiment'][0]))
+
+  print(json.dumps(results))
+
+  return render(request, 'results.html', context={'results':json.dumps(results)})

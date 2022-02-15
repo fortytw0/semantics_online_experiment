@@ -9,9 +9,28 @@
   <title>Document</title>
 </head>
 <body>
-  {% for reaction_time in first_experiment %}
-    {{reaction_time.paticipant.username}}
-    {{reaction_time.reaction_time}}
-  {% endfor %}
+
+  <h1>Visualizing Results!</h1>
+
+  <script>
+
+    var xyz = '{{results | safe}}'
+    var results = JSON.parse(xyz)
+    
+    console.log(results)
+  </script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
+
+  <canvas id="experiment1" style="width:100%;max-width:700px"></canvas>
+  <canvas id="experiment2" style="width:100%;max-width:700px"></canvas>
+  <canvas id="experiment3" style="width:100%;max-width:700px"></canvas>
+  <canvas id="experiment4" style="width:100%;max-width:700px"></canvas>
+
+
+
+  <script src="{% static 'results.js' %}"></script>
 </body>
 </html>

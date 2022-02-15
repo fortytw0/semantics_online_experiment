@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Participant(models.Model) : 
@@ -8,6 +9,11 @@ class Participant(models.Model) :
        unique=True, 
        blank=False, 
        null=False)
+
+  first_experiment = models.IntegerField(default=0)
+  second_experiment = models.IntegerField(default=0)
+  third_experiment = models.IntegerField(default=0)
+  fourth_experiment = models.IntegerField(default=0)
 
 class FirstExperiment(models.Model) :
 
