@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bergen 2010</title>
+</head>
+<body>
+  <h1>Experiment 3</h1>
+
+  <p>
+    In this experiment you have to click the correct button when the timer counts down to 0!
+  </p>
+
+  <h1 id="timer"></h1>
+
+  <div id="question" style="display: none;">
+    <h2>Does this match?</h2>
+    <img src="{% static 'img/example.png' %}" style='height: 100%; width: 100%; object-fit: contain'>
+    <button id="reaction" style="padding: 10px;">Reaction</button>
+  </div>
+  
+  <script>
+    var CSRF_TOKEN = '{{csrf_token}}';
+    var PAGE_URL = '{{url}}'
+  </script>
+ 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static 'reaction_time.js' %}"></script>
+</body>
+</html>
