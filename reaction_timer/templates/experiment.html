@@ -1,33 +1,35 @@
+{% extends "index.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bergen 2010</title>
-</head>
-<body>
-  <h1>Experiment 1</h1>
+{% block experiment %}
+<h2> Experiment 1 </h2>
 
-  <p>
-    In this experiment you have to click the correct button when the timer counts down to 0!
-  </p>
+<p>
+  In this experiment you have to click the correct button when the timer counts down to 0!
+</p>
 
-  <h1 id="timer"></h1>
+<h1 id="timer"></h1>
 
-  <div id="question" style="display: none;">
-    <h2>Does this match?</h2>
-    <img src="{% static 'img/example.png' %}" style='height: 100%; width: 100%; object-fit: contain'>
-    <button id="reaction" style="padding: 10px;">Reaction</button>
+<div id="question" style="display: none;">
+  <h2>Does this match?</h2>
+  <img src="{{image_path}}" style='height: 100%; width: 100%; object-fit: contain'>
+  <div style="display: flex; flex-direction: row;">
+
+  <button id="reaction" style="padding: 10px; margin: 20px;">Match</button>
+   <button id="anti-reaction" style="padding: 10px; margin: 20px;">No Match</button>
   </div>
   
-  <script>
-    var CSRF_TOKEN = '{{csrf_token}}';
+</div>
+
+<div id="reaction time">
+
+</div>
+
+<script>
+  var CSRF_TOKEN = '{{csrf_token}}';
+  var PAGE_URL = ''
 </script>
- 
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{% static 'reaction_time.js' %}"></script>
-</body>
-</html>
+{% endblock %}

@@ -4,7 +4,7 @@ var myChart = new Chart("experiment1", {
     labels:results.username,
     datasets: [
       {
-        label: 'First Experiment',
+        label: 'Images Match',
         data:results.first_experiment,
         borderWidth:1, 
         backgroundColor: [
@@ -12,7 +12,7 @@ var myChart = new Chart("experiment1", {
       }, 
 
       {
-        label: 'Second Experiment',
+        label: 'Images dont match',
         data:results.second_experiment,
         borderWidth:1, 
         backgroundColor: [
@@ -20,7 +20,7 @@ var myChart = new Chart("experiment1", {
       }, 
 
       {
-        label: 'Third Experiment',
+        label: 'Texts Match',
         data:results.third_experiment,
         borderWidth:1, 
         backgroundColor: [
@@ -28,7 +28,7 @@ var myChart = new Chart("experiment1", {
       },
 
       {
-        label: 'Fourth Experiment',
+        label: 'Texts dont Unmatch',
         data:results.fourth_experiment,
         borderWidth:1, 
         backgroundColor: [

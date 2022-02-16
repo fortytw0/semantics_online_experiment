@@ -19,11 +19,7 @@ from main.views import *
 
 urlpatterns = [
     path('', registration, name='registration'),
-   
-    path('experiment1/<str:username>', first_experiment, name='first_experiment'),
-    path('experiment2/<str:username>', second_experiment, name='second_experiment'),
-    path('experiment3/<str:username>', third_experiment, name='third_experiment'),
-    path('experiment4/<str:username>', fourth_experiment, name='fourth_experiment'),
+    path('experiment/<int:experiment_id>/<str:username>/', experiment, name='fourth_experiment'),
     path('results', results, name='results'),
     path('admin/', admin.site.urls),
 ]
