@@ -36,6 +36,16 @@ function awaitReaction(){
 
   antireaction.onclick = function(){
     reactionTime = Date.now()-startTime-2000;
+
+    if (reactionTime>3000){
+      console.log('reaction time too long')
+      reactionTime = 0;
+    }
+
+    if (reactionTime<400){
+      reactionTime = 0;
+    }
+
     reaction.disabled = true;
     antireaction.disabled = true;
     postReactionTime()
